@@ -1,17 +1,16 @@
-name: Build Pipeline
+name: Run Generator Pipeline
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
+  workflow_dispatch: {}
 
 jobs:
-  build:
+  generate:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout repo
+      # 1. Checkout code
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -25,13 +24,23 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # 4. Run build pipeline
-      - name: Run build script
-        run: node engine/build.js
+      # 4. Run generator (YOUR MAIN STEP)
+      - name: Run site generator
+        run: node engine/generate.js
 
-      # 5. Upload output (optional but recommended)
-      - name: Upload build output
+      # 5. Run optional post-build checks
+      - name: Run validation
+        run: node engine/validate.js || true
+
+      - name: Run link check
+        run: node engine/link-check.js || true
+
+      - name: Run crawl simulation
+        run: node engine/crawl-sim.js || true
+
+      # 6. Upload generated output
+      - name: Upload output
         uses: actions/upload-artifact@v4
         with:
-          name: site-output
+          name: generated-site
           path: output/
