@@ -1,121 +1,15 @@
-const fs = require("fs");
-const path = require("path");
-
-/**
- * Recursively collect HTML files from output directory
- */
-function getHtmlFiles(dir) {
-  let results = [];
-
-  const items = fs.readdirSync(dir);
-
-  items.forEach(item => {
-    const fullPath = path.join(dir, item);
-    const stat = fs.statSync(fullPath);
-
-    if (stat.isDirectory()) {
-      results = results.concat(getHtmlFiles(fullPath));
-    } else if (item.endsWith(".html")) {
-      results.push(fullPath);
-    }
-  });
-
-  return results;
-}
-
-/**
- * Extract all href links from HTML
- */
-function extractLinks(content) {
-  const matches = [...content.matchAll(/href=["'](.*?)["']/g)];
-  return matches.map(m => m[1]);
-}
-
-/**
- * Determine if a link is internal
- */
-function isInternal(link) {
-  return (
-    !link.startsWith("http") &&
-    !link.startsWith("mailto:") &&
-    !link.startsWith("#")
-  );
-}
-
-/**
- * Check a single file for broken internal links
- */
-function checkFile(filePath) {
-  const content = fs.readFileSync(filePath, "utf-8");
-
-  const links = extractLinks(content);
-  const internalLinks = links.filter(isInternal);
-
-  const brokenLinks = [];
-
-  internalLinks.forEach(link => {
-    const targetPath = path.join(
-      path.dirname(filePath),
-      link
-    );
-
-    const normalized = targetPath.split("#")[0];
-
-    if (!fs.existsSync(normalized)) {
-      brokenLinks.push(link);
-    }
-  });
-
-  return {
-    file: filePath,
-    totalLinks: links.length,
-    internalLinks: internalLinks.length,
-    brokenLinks
-  };
-}
-
-/**
- * Run full site link check
- */
-function runLinkCheck() {
-  const dir = "./output";
-
-  if (!fs.existsSync(dir)) {
-    console.log("❌ No output directory found.");
-    return;
-  }
-
-  const files = getHtmlFiles(dir);
-
-  const results = files.map(checkFile);
-
-  const brokenPages = results.filter(
-    r => r.brokenLinks.length > 0
-  );
-
-  const report = {
-    totalPages: results.length,
-    pagesWithBrokenLinks: brokenPages.length,
-    issues: brokenPages
-  };
-
-  fs.writeFileSync(
-    "./output/link-report.json",
-    JSON.stringify(report, null, 2)
-  );
-
-  console.log("\n=== LINK CHECK COMPLETE ===");
-  console.log("Pages scanned:", report.totalPages);
-  console.log("Pages with issues:", report.pagesWithBrokenLinks);
-}
-
-module.exports = {
-  runLinkCheck
-};
-
-/**
- * Allow direct execution:
- */
-if (require.main === module) {
-  runLinkCheck();
-}
+your-project/
+│
+├── engine/
+│   ├── generate.js
+│   ├── content.js
+│   ├── links.js
+│   ├── sitemap.js
+│   ├── audit.js
+│   ├── config.js
+│   ├── affiliate.js
+│   ├── link-check.js   ← 👈 PUT THIS FILE HERE
+│
+├── output/
+├── deploy/
+└── package.json
