@@ -1,157 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fast Cash Loans Online | Get Up to $1,500 Today | Instant Decision</title>
-<meta name="description" content="Need cash fast? Get a personal loan up to $1,500 with an instant decision. Bad credit OK. Apply in 5 minutes. Funds as soon as today. Trusted by thousands of Americans.">
-<meta name="keywords" content="payday loans, fast cash loans, personal loans online, bad credit loans, emergency cash, instant loans, same day loans, online loans, quick cash, short term loans, no credit check loans, emergency loans">
-<meta name="robots" content="index, follow">
-<meta property="og:title" content="Fast Cash Loans Online – Instant Decision, Funds Today">
-<meta property="og:description" content="Apply in 5 minutes. Get up to $1,500 deposited as soon as today. Bad credit OK.">
-<meta property="og:type" content="website">
-<link rel="canonical" href="https://yourdomain.com/">
+<!-- HERO -->
+<section class="hero">
+  <h1>Need Cash <span>Right Now?</span><br>Get Up to <span>$1,500</span> Today</h1>
+  <p>Apply in 5 minutes. Instant decision. Funds deposited as soon as today. Bad credit? No problem.</p>
 
-<!-- Schema.org structured data for Google -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FinancialService",
-  "name": "QuickCash Loans",
-  "description": "Fast online personal loans up to $1,500. Instant decision. Bad credit OK.",
-  "serviceType": "Personal Loan",
-  "areaServed": "US",
-  "url": "https://yourdomain.com"
-}
-</script>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <div class="amount-selector">
+    <h2>How much do you need?</h2>
+    <div class="amount-display" id="amtDisplay">$500</div>
+    <input type="range" id="loanSlider" min="100" max="1500" step="50" value="500">
+    <div class="range-labels">
+      <span>$100</span><span>$1,500</span>
+    </div>
+    <a class="cta-btn" href="#" target="_blank" rel="noopener" id="mainCTA">
+      GET MY $500 NOW ›
+    </a>
+    <p class="micro-trust"><span>✓ No hard credit pull</span> &nbsp;|&nbsp; <span>✓ Instant decision</span> &nbsp;|&nbsp; <span>✓ 100% online</span></p>
+  </div>
+</section>
 
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --green: #1a7c3e;
-    --green-light: #23a354;
-    --green-dark: #0f5229;
-    --gold: #e8a020;
-    --gold-light: #f5b940;
-    --red: #c0392b;
-    --dark: #1a1a2e;
-    --text: #222;
-    --muted: #555;
-    --bg: #f4f7f4;
-    --white: #ffffff;
-    --border: #d0d8d0;
-  }
-
-  body {
-    font-family: 'Lato', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    font-size: 16px;
-    line-height: 1.6;
-  }
-
-  /* ---- HEADER ---- */
-  header {
-    background: var(--green-dark);
-    color: white;
-    padding: 0.6rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  }
-  .logo {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 800;
-    letter-spacing: 1px;
-    color: var(--gold-light);
-  }
-  .logo span { color: white; }
-  .header-trust {
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.8);
-    text-align: right;
-  }
-  .header-trust strong { color: var(--gold-light); }
-
-  /* ---- URGENCY BAR ---- */
-  .urgency-bar {
-    background: var(--red);
-    color: white;
-    text-align: center;
-    padding: 0.5rem;
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    animation: pulse-bar 3s ease-in-out infinite;
-  }
-  @keyframes pulse-bar {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.85; }
-  }
-
-  /* ---- HERO ---- */
+  /* Smooth hero gradient animation */
   .hero {
     background: linear-gradient(135deg, #0f5229 0%, #1a7c3e 50%, #1a2e1a 100%);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
     color: white;
     padding: 2.5rem 1rem 2rem;
     text-align: center;
+    transition: all 0.3s ease;
   }
-  .hero h1 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(2.2rem, 6vw, 3.8rem);
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 0.75rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  }
-  .hero h1 span { color: var(--gold-light); }
-  .hero p {
-    font-size: 1.1rem;
-    opacity: 0.92;
-    max-width: 560px;
-    margin: 0 auto 1.5rem;
+  @keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
   }
 
-  /* ---- AMOUNT SELECTOR ---- */
-  .amount-selector {
-    background: white;
-    border-radius: 16px;
-    padding: 1.5rem 1.25rem;
-    max-width: 480px;
-    margin: 0 auto;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-  }
-  .amount-selector h2 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--dark);
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  .amount-display {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--green);
-    text-align: center;
-    margin-bottom: 0.5rem;
-  }
+  /* Slider styling enhancements */
   input[type="range"] {
+    -webkit-appearance: none;
     width: 100%;
-    margin: 0.5rem 0 1.25rem;
-    height: 8px;
-    accent-color: var(--green);
+    height: 10px;
+    border-radius: 5px;
+    background: linear-gradient(to right, var(--green) 50%, #ddd 50%);
+    outline: none;
+    transition: background 0.3s ease;
   }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--gold);
+    cursor: pointer;
+    box-shadow: 0 0 6px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease;
+  }
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+  }
+
+  .range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: #888;
+    margin-bottom: 1rem;
+  }
+
+  /* CTA hover effect */
   .cta-btn {
     display: block;
     width: 100%;
@@ -167,476 +83,23 @@
     text-decoration: none;
     border: none;
     cursor: pointer;
-    transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
-    box-shadow: 0 4px 16px rgba(232,160,32,0.4);
-    animation: glow-btn 2.5s ease-in-out infinite;
-  }
-  @keyframes glow-btn {
-    0%, 100% { box-shadow: 0 4px 16px rgba(232,160,32,0.4); }
-    50% { box-shadow: 0 4px 28px rgba(232,160,32,0.75); }
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    box-shadow: 0 6px 20px rgba(232,160,32,0.35);
   }
   .cta-btn:hover {
     background: var(--gold-light);
-    transform: translateY(-2px);
-  }
-  .cta-btn:active { transform: scale(0.98); }
-  .micro-trust {
-    font-size: 0.75rem;
-    color: var(--muted);
-    text-align: center;
-    margin-top: 0.6rem;
-  }
-  .micro-trust span { color: var(--green); font-weight: 700; }
-
-  /* ---- TRUST BADGES ---- */
-  .trust-strip {
-    background: white;
-    border-top: 3px solid var(--green);
-    padding: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1.5rem;
-    justify-content: center;
-    align-items: center;
-  }
-  .badge {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: var(--dark);
-  }
-  .badge-icon {
-    width: 24px;
-    height: 24px;
-    background: var(--green);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 0.75rem;
-    flex-shrink: 0;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(232,160,32,0.45);
   }
 
-  /* ---- MAIN CONTENT ---- */
-  .main { max-width: 720px; margin: 0 auto; padding: 2rem 1rem; }
-
-  /* ---- HOW IT WORKS ---- */
-  .section-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--green-dark);
-    margin-bottom: 1.5rem;
-    text-align: center;
+  /* Responsive tweaks */
+  @media (max-width: 480px) {
+    .hero h1 { font-size: clamp(1.8rem, 6vw, 3rem); }
+    .cta-btn { font-size: 1.3rem; }
   }
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1rem;
-    margin-bottom: 2.5rem;
-  }
-  .step-card {
-    background: white;
-    border-radius: 12px;
-    padding: 1.25rem;
-    text-align: center;
-    border: 1px solid var(--border);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  }
-  .step-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--green);
-    line-height: 1;
-    margin-bottom: 0.4rem;
-  }
-  .step-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
-  .step-card p { font-size: 0.85rem; color: var(--muted); }
-
-  /* ---- WHY MAXLEND ---- */
-  .features {
-    background: white;
-    border-radius: 14px;
-    padding: 1.5rem;
-    border: 1px solid var(--border);
-    margin-bottom: 2.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  }
-  .feature-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .feature-row:last-child { border-bottom: none; }
-  .feat-icon {
-    width: 34px;
-    height: 34px;
-    background: #e6f5ec;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--green);
-    font-size: 1rem;
-    flex-shrink: 0;
-  }
-  .feat-text h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.15rem; }
-  .feat-text p { font-size: 0.83rem; color: var(--muted); }
-
-  /* ---- TESTIMONIALS ---- */
-  .testimonials { margin-bottom: 2.5rem; }
-  .review-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-  }
-  .review {
-    background: white;
-    border-radius: 12px;
-    padding: 1.1rem;
-    border: 1px solid var(--border);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  }
-  .stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 0.4rem; }
-  .review p { font-size: 0.85rem; color: var(--text); margin-bottom: 0.5rem; font-style: italic; }
-  .reviewer { font-size: 0.78rem; font-weight: 700; color: var(--muted); }
-
-  /* ---- FAQ ---- */
-  .faq { margin-bottom: 2.5rem; }
-  .faq-item {
-    background: white;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    margin-bottom: 0.6rem;
-    overflow: hidden;
-  }
-  .faq-q {
-    padding: 1rem;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    user-select: none;
-  }
-  .faq-q::after { content: '+'; font-size: 1.3rem; color: var(--green); }
-  .faq-q.open::after { content: '−'; }
-  .faq-a {
-    padding: 0 1rem;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.2s;
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-  .faq-a.open { max-height: 200px; padding: 0 1rem 1rem; }
-
-  /* ---- BOTTOM CTA ---- */
-  .bottom-cta {
-    background: var(--green-dark);
-    color: white;
-    border-radius: 14px;
-    padding: 2rem 1.5rem;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  .bottom-cta h2 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-  }
-  .bottom-cta p { opacity: 0.85; margin-bottom: 1.25rem; }
-  .cta-btn-lg {
-    display: inline-block;
-    background: var(--gold);
-    color: #1a1a1a;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 800;
-    padding: 0.9rem 2.5rem;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: transform 0.15s, background 0.15s;
-  }
-  .cta-btn-lg:hover { background: var(--gold-light); transform: translateY(-2px); }
-
-  /* ---- DISCLAIMER / FOOTER ---- */
-  footer {
-    background: #2a2a2a;
-    color: rgba(255,255,255,0.65);
-    font-size: 0.72rem;
-    line-height: 1.6;
-    padding: 1.5rem 1rem;
-    text-align: center;
-  }
-  footer a { color: rgba(255,255,255,0.5); text-decoration: underline; }
-
-  /* ---- STICKY MOBILE CTA ---- */
-  .sticky-cta {
-    display: none;
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: var(--gold);
-    color: #1a1a1a;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 800;
-    text-align: center;
-    padding: 1rem;
-    text-decoration: none;
-    z-index: 200;
-    box-shadow: 0 -4px 16px rgba(0,0,0,0.2);
-  }
-  @media (max-width: 600px) { .sticky-cta { display: block; } }
-
-  /* ---- LIVE COUNTER ---- */
-  .live-counter {
-    background: #fff8e6;
-    border: 1px solid #f0c040;
-    border-radius: 8px;
-    padding: 0.5rem 1rem;
-    font-size: 0.83rem;
-    font-weight: 700;
-    color: #7a5010;
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-  .live-dot {
-    display: inline-block;
-    width: 8px; height: 8px;
-    background: var(--red);
-    border-radius: 50%;
-    margin-right: 4px;
-    animation: blink 1.2s steps(1) infinite;
-  }
-  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 </style>
-</head>
-<body>
-
-<!-- AFFILIATE LINK: replace all instances of the MaxLend affiliate URL below -->
-
-<header>
-  <div class="logo">Quick<span>Cash</span>Now</div>
-  <div class="header-trust">
-    <strong>256-bit SSL Secure</strong><br>
-    Trusted Since 2015
-  </div>
-</header>
-
-<div class="urgency-bar">
-  ⚡ LIMITED TIME: Apply before midnight for same-day deposit &nbsp;|&nbsp; Bad credit accepted
-</div>
-
-<!-- HERO -->
-<section class="hero">
-  <h1>Need Cash <span>Right Now?</span><br>Get Up to <span>$1,500</span> Today</h1>
-  <p>Apply in 5 minutes. Instant decision. Funds deposited as soon as today. Bad credit? No problem.</p>
-
-  <div class="amount-selector">
-    <h2>How much do you need?</h2>
-    <div class="amount-display" id="amtDisplay">$500</div>
-    <input type="range" id="loanSlider" min="100" max="1500" step="50" value="500">
-    <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:#888;margin-bottom:1rem;">
-      <span>$100</span><span>$1,500</span>
-    </div>
-    <a class="cta-btn" href="https://www.linkconnector.com/ta.php?lc=007949096598005765&atid=__Maxlend__Caesaro__" target="_blank" rel="noopener" id="mainCTA">
-      GET MY $500 NOW ›
-    </a>
-    <p class="micro-trust"><span>✓ No hard credit pull</span> &nbsp;|&nbsp; <span>✓ Instant decision</span> &nbsp;|&nbsp; <span>✓ 100% online</span></p>
-  </div>
-</section>
-
-<!-- TRUST BADGES -->
-<div class="trust-strip">
-  <div class="badge"><div class="badge-icon">✓</div> No hard credit check</div>
-  <div class="badge"><div class="badge-icon">🔒</div> 256-bit SSL secured</div>
-  <div class="badge"><div class="badge-icon">⚡</div> Funds as soon as today</div>
-  <div class="badge"><div class="badge-icon">★</div> 4.8 / 5 avg rating</div>
-  <div class="badge"><div class="badge-icon">$</div> No prepayment penalty</div>
-</div>
-
-<!-- MAIN CONTENT -->
-<main class="main">
-
-  <!-- LIVE COUNTER -->
-  <div class="live-counter">
-    <span class="live-dot"></span>
-    <span id="applyCount">247</span> people are applying right now — funds go fast!
-  </div>
-
-  <!-- HOW IT WORKS -->
-  <h2 class="section-title">How It Works — 3 Easy Steps</h2>
-  <div class="steps">
-    <div class="step-card">
-      <div class="step-num">1</div>
-      <h3>Fill Out the Form</h3>
-      <p>Takes just 5 minutes. 100% online — no faxing, no paperwork.</p>
-    </div>
-    <div class="step-card">
-      <div class="step-num">2</div>
-      <h3>Get Instant Decision</h3>
-      <p>See your approval status in seconds, even with bad or no credit.</p>
-    </div>
-    <div class="step-card">
-      <div class="step-num">3</div>
-      <h3>Receive Your Cash</h3>
-      <p>Funds deposited directly to your bank account as soon as today.</p>
-    </div>
-  </div>
-
-  <!-- WHY MAXLEND -->
-  <h2 class="section-title">Why Thousands Choose MaxLend</h2>
-  <div class="features">
-    <div class="feature-row">
-      <div class="feat-icon">💵</div>
-      <div class="feat-text">
-        <h4>Borrow $100 – $1,500</h4>
-        <p>Flexible loan amounts to cover any emergency — car repairs, medical bills, rent, groceries, or anything you need.</p>
-      </div>
-    </div>
-    <div class="feature-row">
-      <div class="feat-icon">⚡</div>
-      <div class="feat-text">
-        <h4>Same-Day Funding Available</h4>
-        <p>Apply before noon and you could have money in your account by end of business day.</p>
-      </div>
-    </div>
-    <div class="feature-row">
-      <div class="feat-icon">👍</div>
-      <div class="feat-text">
-        <h4>Bad Credit? Still Welcome</h4>
-        <p>Approval is based on your income and ability to repay — not your FICO score. Soft inquiry only.</p>
-      </div>
-    </div>
-    <div class="feature-row">
-      <div class="feat-icon">🔁</div>
-      <div class="feat-text">
-        <h4>Returning Customer Perks</h4>
-        <p>Previous borrowers get even faster approvals and better terms. MaxLend rewards loyalty.</p>
-      </div>
-    </div>
-    <div class="feature-row">
-      <div class="feat-icon">📱</div>
-      <div class="feat-text">
-        <h4>100% Online — Apply Anytime</h4>
-        <p>No branch visits, no phone calls required. Apply from your phone, tablet, or computer 24/7.</p>
-      </div>
-    </div>
-    <div class="feature-row">
-      <div class="feat-icon">🔒</div>
-      <div class="feat-text">
-        <h4>Secure & Confidential</h4>
-        <p>Bank-level 256-bit SSL encryption protects every piece of your information.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- TESTIMONIALS -->
-  <h2 class="section-title">Real People, Real Results</h2>
-  <div class="testimonials">
-    <div class="review-cards">
-      <div class="review">
-        <div class="stars">★★★★★</div>
-        <p>"I applied at 9am and had the money by 2pm the same day. Literally saved me from eviction. Thank you MaxLend!"</p>
-        <div class="reviewer">— Sandra T., Ohio</div>
-      </div>
-      <div class="review">
-        <div class="stars">★★★★★</div>
-        <p>"My credit score is terrible but they still approved me. Application took maybe 4 minutes. Would definitely use again."</p>
-        <div class="reviewer">— Marcus D., Texas</div>
-      </div>
-      <div class="review">
-        <div class="stars">★★★★☆</div>
-        <p>"Car broke down on the highway. Applied on my phone while waiting for the tow truck. Got approved before he arrived!"</p>
-        <div class="reviewer">— Brittany K., Florida</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- WHO QUALIFIES -->
-  <h2 class="section-title">Who Can Apply?</h2>
-  <div class="features" style="margin-bottom:2.5rem;">
-    <div class="feature-row"><div class="feat-icon">✓</div><div class="feat-text"><h4>US Residents 18+</h4><p>Must be a legal US resident and at least 18 years old.</p></div></div>
-    <div class="feature-row"><div class="feat-icon">✓</div><div class="feat-text"><h4>Active Checking Account</h4><p>A valid checking account for direct deposit of funds.</p></div></div>
-    <div class="feature-row"><div class="feat-icon">✓</div><div class="feat-text"><h4>Steady Income</h4><p>Regular income from employment, benefits, or other sources.</p></div></div>
-    <div class="feature-row"><div class="feat-icon">✓</div><div class="feat-text"><h4>Valid Email & Phone</h4><p>So MaxLend can reach you with your approval decision.</p></div></div>
-  </div>
-
-  <!-- FAQ -->
-  <h2 class="section-title">Frequently Asked Questions</h2>
-  <div class="faq">
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How fast can I get my money?</div>
-      <div class="faq-a">Many borrowers receive funds the same business day if they apply in the morning and have a qualifying bank account. In most cases, funds arrive within 1 business day.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Do I need good credit to get approved?</div>
-      <div class="faq-a">No. MaxLend considers your income and repayment ability, not your credit score. Many people with poor or no credit history are approved every day.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">How much can I borrow?</div>
-      <div class="faq-a">First-time borrowers can get up to $1,000. Returning customers who have repaid previous loans may qualify for up to $1,500. The amount you qualify for depends on your state and income.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Is my information safe?</div>
-      <div class="faq-a">Yes. MaxLend uses 256-bit SSL encryption — the same technology used by major banks — to protect your personal and financial information.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">Can I apply if I'm already a MaxLend customer?</div>
-      <div class="faq-a">Absolutely. Returning customers often enjoy faster approval times and may qualify for higher loan amounts based on their repayment history.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">What states does MaxLend serve?</div>
-      <div class="faq-a">MaxLend is available in many US states. Availability and loan terms may vary by state. You'll see eligibility information when you begin your application.</div>
-    </div>
-  </div>
-
-  <!-- BOTTOM CTA -->
-  <div class="bottom-cta">
-    <h2>Stop Stressing. Get Your Cash Today.</h2>
-    <p>Don't let a financial emergency ruin your week. Apply now — it only takes 5 minutes and there's no obligation.</p>
-    <a class="cta-btn-lg" href="https://www.linkconnector.com/ta.php?lc=007949096598005765&atid=__Maxlend__Caesaro__" target="_blank" rel="noopener">
-      APPLY NOW — GET UP TO $1,500 ›
-    </a>
-    <p style="font-size:0.78rem;opacity:0.7;margin-top:0.75rem;">No hard credit pull · Instant decision · 100% online · Secure</p>
-  </div>
-
-</main>
-
-<!-- FOOTER -->
-<footer>
-  <p style="margin-bottom:0.5rem;font-weight:700;color:rgba(255,255,255,0.85);">QuickCashNow.com</p>
-  <p style="margin-bottom:0.75rem;">
-    <a href="#">Privacy Policy</a> &nbsp;|&nbsp;
-    <a href="#">Terms of Use</a> &nbsp;|&nbsp;
-    <a href="#">Contact Us</a>
-  </p>
-  <p>
-    This website is an independent advertising-supported comparison service. We may receive compensation when you click links to partner sites. This compensation may impact how and where products appear on this site. QuickCashNow.com does not include all financial companies or all available products.
-  </p>
-  <p style="margin-top:0.5rem;">
-    <strong>Important Disclosure:</strong> Short-term loans, including installment loans, are expensive forms of credit intended for short-term financial needs only — they are not intended as long-term financial solutions. APR can be high. Customers with credit difficulties should seek credit counseling. Loan availability and terms vary by state. Not available in all states.
-  </p>
-  <p style="margin-top:0.5rem;">© 2025 QuickCashNow.com. All rights reserved. This site is not affiliated with any government agency.</p>
-</footer>
-
-<!-- STICKY MOBILE CTA -->
-<a class="sticky-cta" href="https://www.linkconnector.com/ta.php?lc=007949096598005765&atid=__Maxlend__Caesaro__" target="_blank" rel="noopener">
-  ⚡ GET MY CASH NOW — APPLY FREE ›
-</a>
 
 <script>
-  // Slider
   const slider = document.getElementById('loanSlider');
   const display = document.getElementById('amtDisplay');
   const cta = document.getElementById('mainCTA');
@@ -646,25 +109,8 @@
     const val = parseInt(slider.value);
     display.textContent = '$' + val.toLocaleString();
     cta.textContent = 'GET MY $' + val.toLocaleString() + ' NOW ›';
+    const percent = (val - slider.min) / (slider.max - slider.min) * 100;
+    slider.style.background = `linear-gradient(to right, var(--green) ${percent}%, #ddd ${percent}%)`;
     cta.href = affLink;
   });
-
-  // Live counter simulation
-  let count = 247;
-  setInterval(() => {
-    const change = Math.floor(Math.random() * 5) - 1;
-    count = Math.max(210, Math.min(310, count + change));
-    const el = document.getElementById('applyCount');
-    if (el) el.textContent = count;
-  }, 4500);
-
-  // FAQ toggle
-  function toggleFaq(el) {
-    el.classList.toggle('open');
-    const ans = el.nextElementSibling;
-    ans.classList.toggle('open');
-  }
 </script>
-
-</body>
-</html>
