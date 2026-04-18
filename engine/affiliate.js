@@ -1,56 +1,81 @@
 const config = require("./config");
 
 /**
- * Centralized affiliate manager
- * - prevents hardcoding links everywhere
- * - allows future rotation / A/B testing
+ * Affiliate Abstraction Layer
+ * --------------------------------
+ * Purpose:
+ * - keep affiliate logic out of page templates
+ * - allow swapping offers safely
+ * - support multiple programs later
  */
 
-const AFFILIATES = {
+const OFFERS = {
   maxlend: {
     url: config.affiliate?.maxlend?.url,
     rel: "nofollow sponsored",
     openInNewTab: true,
-    trackingLabel: "maxlend_main_cta"
+    label: "Sponsored Offer"
   }
 };
 
 /**
- * Get affiliate config safely
+ * Validate affiliate exists
  */
-function getAffiliate(key) {
-  if (!AFFILIATES[key]) {
-    throw new Error(`Affiliate key not found: ${key}`);
+function getOffer(key) {
+  const offer = OFFERS[key];
+
+  if (!offer) {
+    throw new Error(`Affiliate offer not found: ${key}`);
   }
-  return AFFILIATES[key];
+
+  return offer;
 }
 
 /**
- * Build safe HTML anchor tag
+ * Render safe HTML link
  */
-function buildAffiliateLink(key, text = "Learn More") {
-  const aff = getAffiliate(key);
+function renderLink(key, text) {
+  const offer = getOffer(key);
 
-  const target = aff.openInNewTab ? `_blank` : `_self`;
+  const target = offer.openInNewTab ? "_blank" : "_self";
 
-  return `<a href="${aff.url}" target="${target}" rel="${aff.rel}">
-    ${text}
+  return `<a href="${offer.url}" target="${target}" rel="${offer.rel}">
+    ${text || offer.label}
   </a>`;
 }
 
 /**
- * Optional: swap CTAs without touching pages
+ * Safe CTA generator (decoupled from offer)
  */
 function getCTA(key) {
-  const map = {
-    maxlend: "Check Eligibility",
+  const ctas = {
+    maxlend: [
+      "Check Eligibility",
+      "See Options",
+      "View Details"
+    ]
   };
 
-  return map[key] || "Learn More";
+  const options = ctas[key] || ["Learn More"];
+  return options[Math.floor(Math.random() * options.length)];
+}
+
+/**
+ * Return full affiliate block (HTML-safe)
+ */
+function renderCTASection(key) {
+  const link = renderLink(key, getCTA(key));
+
+  return `
+    <div class="affiliate-cta">
+      ${link}
+    </div>
+  `;
 }
 
 module.exports = {
-  getAffiliate,
-  buildAffiliateLink,
-  getCTA
+  getOffer,
+  renderLink,
+  getCTA,
+  renderCTASection
 };
