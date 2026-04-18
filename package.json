@@ -1,0 +1,17 @@
+{
+  "name": "programmatic-seo-engine",
+  "version": "1.0.0",
+  "description": "Static programmatic SEO site generator",
+  "main": "engine/cli.js",
+  "scripts": {
+    "build": "node engine/cli.js",
+    "generate": "node engine/generate.js",
+    "audit": "node engine/audit.js",
+    "sitemap": "node -e \"require('./engine/sitemap').generateSitemap()\"",
+    "deploy": "node deploy/deploy.js"
+  },
+  "keywords": ["seo", "generator", "static-site"],
+  "author": "you",
+  "license": "MIT",
+  "type": "commonjs"
+}
