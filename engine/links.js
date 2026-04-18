@@ -24,7 +24,7 @@ function getHtmlFiles(dir) {
 }
 
 /**
- * Extract href links from HTML
+ * Extract all href links from HTML
  */
 function extractLinks(content) {
   const matches = [...content.matchAll(/href=["'](.*?)["']/g)];
@@ -43,7 +43,7 @@ function isInternal(link) {
 }
 
 /**
- * Check a single file for broken internal links
+ * Check a single file for broken links
  */
 function checkFile(filePath) {
   const content = fs.readFileSync(filePath, "utf-8");
@@ -71,7 +71,7 @@ function checkFile(filePath) {
 }
 
 /**
- * Run full link integrity scan
+ * Run full scan
  */
 function runLinkCheck() {
   const dir = "./output";
@@ -106,7 +106,7 @@ function runLinkCheck() {
 }
 
 /**
- * Allow direct execution from CLI
+ * Allow direct CLI execution
  */
 if (require.main === module) {
   runLinkCheck();
