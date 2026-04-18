@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 /**
- * Recursively collect HTML files
+ * Recursively collect HTML files from output directory
  */
 function getHtmlFiles(dir) {
   let results = [];
@@ -24,7 +24,7 @@ function getHtmlFiles(dir) {
 }
 
 /**
- * Extract all links from HTML
+ * Extract all href links from HTML
  */
 function extractLinks(content) {
   const matches = [...content.matchAll(/href=["'](.*?)["']/g)];
@@ -32,14 +32,18 @@ function extractLinks(content) {
 }
 
 /**
- * Check if link is internal
+ * Determine if a link is internal
  */
 function isInternal(link) {
-  return !link.startsWith("http") && !link.startsWith("mailto:");
+  return (
+    !link.startsWith("http") &&
+    !link.startsWith("mailto:") &&
+    !link.startsWith("#")
+  );
 }
 
 /**
- * Validate a single file
+ * Check a single file for broken internal links
  */
 function checkFile(filePath) {
   const content = fs.readFileSync(filePath, "utf-8");
@@ -47,7 +51,7 @@ function checkFile(filePath) {
   const links = extractLinks(content);
   const internalLinks = links.filter(isInternal);
 
-  const broken = [];
+  const brokenLinks = [];
 
   internalLinks.forEach(link => {
     const targetPath = path.join(
@@ -58,7 +62,7 @@ function checkFile(filePath) {
     const normalized = targetPath.split("#")[0];
 
     if (!fs.existsSync(normalized)) {
-      broken.push(link);
+      brokenLinks.push(link);
     }
   });
 
@@ -66,18 +70,18 @@ function checkFile(filePath) {
     file: filePath,
     totalLinks: links.length,
     internalLinks: internalLinks.length,
-    brokenLinks: broken
+    brokenLinks
   };
 }
 
 /**
- * Run full link integrity scan
+ * Run full site link check
  */
 function runLinkCheck() {
   const dir = "./output";
 
   if (!fs.existsSync(dir)) {
-    console.log("No output directory found.");
+    console.log("❌ No output directory found.");
     return;
   }
 
@@ -85,10 +89,12 @@ function runLinkCheck() {
 
   const results = files.map(checkFile);
 
-  const brokenPages = results.filter(r => r.brokenLinks.length > 0);
+  const brokenPages = results.filter(
+    r => r.brokenLinks.length > 0
+  );
 
   const report = {
-    totalPages: files.length,
+    totalPages: results.length,
     pagesWithBrokenLinks: brokenPages.length,
     issues: brokenPages
   };
@@ -98,11 +104,18 @@ function runLinkCheck() {
     JSON.stringify(report, null, 2)
   );
 
-  console.log("Link integrity check complete:");
-  console.log("Pages scanned:", files.length);
-  console.log("Pages with issues:", brokenPages.length);
+  console.log("\n=== LINK CHECK COMPLETE ===");
+  console.log("Pages scanned:", report.totalPages);
+  console.log("Pages with issues:", report.pagesWithBrokenLinks);
 }
 
 module.exports = {
   runLinkCheck
 };
+
+/**
+ * Allow direct execution:
+ */
+if (require.main === module) {
+  runLinkCheck();
+}
