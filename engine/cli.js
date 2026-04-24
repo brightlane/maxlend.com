@@ -1,45 +1,43 @@
-const { execSync } = require("child_process");
-const config = require("./config");
+name: Generator Pipeline
 
-function log(msg) {
-  console.log(`[SEO CLI] ${msg}`);
-}
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
 
-function runStep(name, command) {
-  log(`Running: ${name}`);
-  execSync(command, { stdio: "inherit" });
-}
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-function start() {
-  console.log("\n==================================");
-  console.log("   PROGRAMMATIC SEO ENGINE");
-  console.log("==================================\n");
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-  // STEP 1: Generate site
-  runStep("Generate Pages", "node engine/generate.js");
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-  // STEP 2: Build sitemap
-  if (config.sitemap.enabled) {
-    runStep("Generate Sitemap", "node -e \"require('./engine/sitemap').generateSitemap()\"");
-  }
+      - name: Install dependencies
+        run: npm install || true
 
-  // STEP 3: Run audit
-  if (config.audit.enabled) {
-    runStep("Run Audit", "node -e \"require('./engine/audit').runAudit()\"");
-  }
+      # 1. Generate keywords FIRST
+      - name: Generate keywords.json
+        run: node engine/keywords.js
 
-  // STEP 4: Optional deploy
-  if (config.deploy.method === "git" && config.deploy.autoDeploy) {
-    runStep(
-      "Git Deploy",
-      `git add . && git commit -m "${config.deploy.commitMessage}" && git push origin main`
-    );
-  }
+      # 2. Safety check (prevents silent failures)
+      - name: Verify keywords.json exists
+        run: test -f keywords.json || (echo "keywords.json missing" && exit 1)
 
-  console.log("\n==================================");
-  console.log("   BUILD COMPLETE");
-  console.log("==================================\n");
-}
+      # 3. Run site generator
+      - name: Build site
+        run: node engine/generate.js
 
-// RUN SYSTEM
-start();
+      # 4. Commit & push output
+      - name: Commit changes
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add .
+          git commit -m "Auto-generated SEO site update" || exit 0
+          git push
